@@ -40,8 +40,18 @@ class OpenaiHelper {
         'https://api.openai.com/v1/chat/completions',
         options: option,
         data: {
-          "model": "ft:gpt-4o-mini-2024-07-18:hieu:nam-hanviet:AkDdsrfy",
+          "model": "gpt-4o-mini-2024-07-18",
           "messages": [
+            {
+              "role": "system",
+              "content": [
+                {
+                  "type": "text",
+                  "text":
+                      "You are an expert translator. Your task is to translate text   to Vietnamese (vi). Only translate the text provided. Do not summarize any prior context. Please provide an accurate translation of this document and return translation text only:"
+                }
+              ]
+            },
             {
               "role": "user",
               "content": [
