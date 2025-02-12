@@ -17,25 +17,7 @@ class OpenaiHelper {
 
   Dio dio = Dio();
 
-  Future<List?> getEmbedding(String text) async {
-    // print('RESPONSE ${text}');
-
-    final response = await dio.post(
-      'https://api.openai.com/v1/embeddings',
-      options: option,
-      data: {
-        "input": text,
-        "model": "text-embedding-3-small",
-      },
-    );
-
-    // print('RESPONSE ${response}');
-    return response.data['data'][0]['embedding'];
-  }
-
   Future<Map> getTranslate(String text) async {
-    // print('RESPONSE ${text}');
-
     final response = await dio.post(
         'https://api.openai.com/v1/chat/completions',
         options: option,
