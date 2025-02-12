@@ -17,31 +17,23 @@ class OpenaiHelper {
 
   Dio dio = Dio();
 
-  Future<List?> getEmbedding(String text) async {
-    // print('RESPONSE ${text}');
-
-    final response = await dio.post(
-      'https://api.openai.com/v1/embeddings',
-      options: option,
-      data: {
-        "input": text,
-        "model": "text-embedding-3-small",
-      },
-    );
-
-    // print('RESPONSE ${response}');
-    return response.data['data'][0]['embedding'];
-  }
-
   Future<Map> getTranslate(String text) async {
-    // print('RESPONSE ${text}');
-
     final response = await dio.post(
         'https://api.openai.com/v1/chat/completions',
         options: option,
         data: {
-          "model": "ft:gpt-4o-mini-2024-07-18:hieu:nam-hanviet:AkDdsrfy",
+          "model": "gpt-4o-mini-2024-07-18",
           "messages": [
+            {
+              "role": "system",
+              "content": [
+                {
+                  "type": "text",
+                  "text":
+                      "You are an expert translator. Your task is to translate text   to Vietnamese (vi). Only translate the text provided. Do not summarize any prior context. Please provide an accurate translation of this document and return translation text only:"
+                }
+              ]
+            },
             {
               "role": "user",
               "content": [
